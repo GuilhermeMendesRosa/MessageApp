@@ -8,7 +8,7 @@ import model.ScannerMessage;
 import model.StringValidator;
 
 public class ClientMain {
-	private static final int DEFALUT_PORT = 1208;
+	private static final int DEFAULT_PORT = 1208;
 	private static final String HOST_NAME = "localhost";
 
 	public static void main(String[] args) throws IOException {
@@ -22,7 +22,7 @@ public class ClientMain {
             }
         } while (!isValidUsername);
 
-		Client client = new Client(username, HOST_NAME, DEFALUT_PORT);
+		Client client = new Client(username, HOST_NAME, DEFAULT_PORT);
 
 		System.out.println("Informe uma mensagem: ");
 		new Thread(new ClientRunnable(client)).start();
