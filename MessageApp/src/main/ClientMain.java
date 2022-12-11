@@ -12,11 +12,11 @@ public class ClientMain {
 
 	public static void main(String[] args) throws IOException {
 		String message;
-		String userName = getMessage("Nome do usuário: ");
+		String userName = getMessage("Informe o nome do usuário: ");
 
 		Client client = new Client(userName, HOST_NAME, DEFALUT_PORT);
 
-		System.out.println("Diga olá...");
+		System.out.println("Informe uma mensagem: ");
 		new Thread(new ClientRunnable(client)).start();
 
 		do {
