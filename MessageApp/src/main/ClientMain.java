@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import model.Client;
 import model.ClientRunnable;
-import model.UsernameValidator;
+import model.StringValidator;
 
 public class ClientMain {
 	private static final int DEFALUT_PORT = 1208;
@@ -16,7 +16,7 @@ public class ClientMain {
         String username;
         do {
             username = getMessage("Informe o nome do usuário: ");
-            isValidUsername = UsernameValidator.validate(username);
+            isValidUsername = StringValidator.validate(username);
             if (!isValidUsername) {
                 System.out.print("Usuário inválido. ");
             }
@@ -30,7 +30,11 @@ public class ClientMain {
         String message;
 		do {
 			message = getMessage(null);
-			client.sendMessage(message);
+            if (StringValidator.validate(message)) {
+                client.sendMessage(message);
+            } else {
+                System.out.println("Mensagem inválida.");
+            }
 		} while (message != "");
 
 		client.closeConnection();

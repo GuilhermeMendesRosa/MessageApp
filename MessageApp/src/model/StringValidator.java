@@ -1,6 +1,6 @@
 package model;
 
-public class UsernameValidator {
+public class StringValidator {
 
     public static Boolean validate(String username) {
         if (username == null) return false;
