@@ -18,7 +18,7 @@ public class ClientMain {
             username = getMessage("Informe o nome do usuário: ");
             isValidUsername = StringValidator.validate(username);
             if (!isValidUsername) {
-                System.out.print("Usuário inválido. ");
+                System.out.println("Usuário inválido. ");
             }
         } while (!isValidUsername);
 
