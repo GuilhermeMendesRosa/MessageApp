@@ -1,10 +1,10 @@
 package main;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import model.Client;
 import model.ClientRunnable;
+import model.ScannerMessage;
 import model.StringValidator;
 
 public class ClientMain {
@@ -12,10 +12,10 @@ public class ClientMain {
 	private static final String HOST_NAME = "localhost";
 
 	public static void main(String[] args) throws IOException {
-        Boolean isValidUsername;
+        boolean isValidUsername = false;
         String username;
         do {
-            username = getMessage("Informe o nome do usuário: ");
+            username = ScannerMessage.get("Informe o nome do usuário: ");
             isValidUsername = StringValidator.validate(username);
             if (!isValidUsername) {
                 System.out.println("Usuário inválido. ");
@@ -29,7 +29,7 @@ public class ClientMain {
 
         String message;
 		do {
-			message = getMessage(null);
+			message = ScannerMessage.get(null);
             if (StringValidator.validate(message)) {
                 client.sendMessage(message);
             } else {
@@ -38,14 +38,5 @@ public class ClientMain {
 		} while (message != "");
 
 		client.closeConnection();
-	}
-
-	private static String getMessage(String label) {
-		Scanner scanner = new Scanner(System.in);
-		if (label != null) {
-			System.out.println(label);
-		}
-
-		return scanner.nextLine();
 	}
 }
