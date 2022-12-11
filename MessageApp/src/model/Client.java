@@ -40,7 +40,6 @@ public class Client {
 				System.out.println(serverMessage);
 			} else if (this.isValidUser(messageOwner) && serverMessage.contains("#close")) {
 				System.out.println(messageOwner + " se desconectou!");
-				
 			}
 		}
 	}
@@ -49,7 +48,7 @@ public class Client {
 		printStream.close();
 		socket.close();
 	}
-	
+
 	private Boolean isValidUser(String messageOwner) {
 		return messageOwner != null && !messageOwner.equals(this.userId);
 	}
