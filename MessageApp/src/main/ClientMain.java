@@ -8,13 +8,13 @@ import model.ClientRunnable;
 
 public class ClientMain {
 	private static final int DEFALUT_PORT = 1208;
-	private static final String LOCALHOST = "localhost";
+	private static final String HOST_NAME = "localhost";
 
 	public static void main(String[] args) throws IOException {
 		String message;
 		String userName = getMessage("Nome do usuário: ");
 
-		Client client = new Client(userName, LOCALHOST, DEFALUT_PORT);
+		Client client = new Client(userName, HOST_NAME, DEFALUT_PORT);
 
 		System.out.println("Diga olá...");
 		new Thread(new ClientRunnable(client)).start();
