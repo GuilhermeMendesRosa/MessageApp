@@ -36,8 +36,11 @@ public class Client {
 		while ((serverMessage = reader.readLine()) != null) {
 			String messageOwner = serverMessage.split(":")[0];
 
-			if (messageOwner != null && !messageOwner.equals(userId)) {
+			if (this.isValidUser(messageOwner) && !serverMessage.contains("#close")) {
 				System.out.println(serverMessage);
+			} else if (this.isValidUser(messageOwner) && serverMessage.contains("#close")) {
+				System.out.println(messageOwner + " se desconectou!");
+				
 			}
 		}
 	}
@@ -45,5 +48,9 @@ public class Client {
 	public void closeConnection() throws IOException {
 		printStream.close();
 		socket.close();
+	}
+	
+	private Boolean isValidUser(String messageOwner) {
+		return messageOwner != null && !messageOwner.equals(this.userId);
 	}
 }
