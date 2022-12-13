@@ -20,12 +20,12 @@ public class Client {
 
 		this.socket = new Socket(localhost, port);
 
-		printStream = new PrintStream(socket.getOutputStream());
-		printStream.println(userId);
+		this.printStream = new PrintStream(socket.getOutputStream());
+		this.printStream.println(userId);
 	}
 
 	public void sendMessage(String message) {
-		printStream.println(userId + ": " + message);
+		this.printStream.println(userId + ": " + message);
 	}
 
 	public void receiveMessage() throws IOException {
@@ -45,8 +45,8 @@ public class Client {
 	}
 
 	public void closeConnection() throws IOException {
-		printStream.close();
-		socket.close();
+		this.printStream.close();
+		this.socket.close();
 	}
 
 	private Boolean isValidUser(String messageOwner) {
