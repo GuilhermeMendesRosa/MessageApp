@@ -20,7 +20,13 @@ public class ClientMain {
 			}
 		} while (!isValidUsername);
 
-		Client client = new Client(username, HOST_NAME, DEFAULT_PORT);
+        Client client;
+		try {
+            client = new Client(username, HOST_NAME, DEFAULT_PORT);
+        } catch (Exception exception) {
+            System.out.println("Conexão recusada. Tente novamente");
+            return;
+        }
 
 		System.out.println("Informe uma mensagem: ");
 		new Thread(new ReceiveMessageRunnable(client)).start();
