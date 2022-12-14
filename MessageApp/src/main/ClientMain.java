@@ -12,10 +12,11 @@ public class ClientMain {
 		boolean isValidUsername = false;
 		String username;
 		do {
-			username = ScannerMessage.get(ConsoleColors.RESET + "Informe o nome do usuário: ");
+            System.out.print(MessageBuilder.defaultColor(""));
+			username = ScannerMessage.get(MessageBuilder.defaultColor("Informe o nome do usuário: "));
 			isValidUsername = StringValidator.isNotBlank(username);
 			if (!isValidUsername) {
-				System.out.println(ConsoleColors.RED + "Usuário inválido. ");
+				System.out.println(MessageBuilder.error("Usuário inválido. "));
 			}
 		} while (!isValidUsername);
 
@@ -26,11 +27,13 @@ public class ClientMain {
 
 		String message;
 		do {
-			message = ScannerMessage.get(null);
-			if (StringValidator.isNotBlank(message)) {
-				client.sendMessage(message);
-			} else {
-				System.out.println(ConsoleColors.RED + "Mensagem inválida.");
+            System.out.println(MessageBuilder.defaultColor(""));
+
+            message = ScannerMessage.get(null);
+            if (StringValidator.isNotBlank(message)) {
+                client.sendMessage(message);
+            } else {
+				System.out.println(MessageBuilder.error("Mensagem inválida."));
 			}
 		} while (!message.equals("#close"));
 
