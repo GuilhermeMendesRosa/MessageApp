@@ -10,15 +10,15 @@ public class Client {
 	PrintStream printStream;
 	Socket socket;
 	String userId;
-	String localhost;
+	String host;
 	Integer port;
 
-	public Client(String userId, String localhost, Integer port) throws IOException {
+	public Client(String userId, String host, Integer port) throws IOException {
 		this.userId = userId;
-		this.localhost = localhost;
+		this.host = host;
 		this.port = port;
 
-		this.socket = new Socket(localhost, port);
+		this.socket = new Socket(host, port);
 
 		printStream = new PrintStream(socket.getOutputStream());
 		printStream.println(userId);
@@ -41,6 +41,10 @@ public class Client {
 			}
 		}
 	}
+
+    public boolean isConnected() {
+        return socket.isConnected();
+    }
 
 	public void closeConnection() throws IOException {
 		printStream.close();
