@@ -2,10 +2,7 @@ package main;
 
 import java.io.IOException;
 
-import model.Client;
-import model.ReceiveMessageRunnable;
-import model.ScannerMessage;
-import model.StringValidator;
+import model.*;
 
 public class ClientMain {
 	private static final int DEFAULT_PORT = 1208;
@@ -15,10 +12,10 @@ public class ClientMain {
 		boolean isValidUsername = false;
 		String username;
 		do {
-			username = ScannerMessage.get("Informe o nome do usuário: ");
+			username = ScannerMessage.get(ConsoleColors.RESET + "Informe o nome do usuário: ");
 			isValidUsername = StringValidator.isNotBlank(username);
 			if (!isValidUsername) {
-				System.out.println("Usuário inválido. ");
+				System.out.println(ConsoleColors.RED + "Usuário inválido. ");
 			}
 		} while (!isValidUsername);
 
@@ -33,7 +30,7 @@ public class ClientMain {
 			if (StringValidator.isNotBlank(message)) {
 				client.sendMessage(message);
 			} else {
-				System.out.println("Mensagem inválida.");
+				System.out.println(ConsoleColors.RED + "Mensagem inválida.");
 			}
 		} while (!message.equals("#close"));
 
