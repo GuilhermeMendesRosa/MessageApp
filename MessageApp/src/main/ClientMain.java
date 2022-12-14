@@ -12,7 +12,7 @@ public class ClientMain {
 	private static final String HOST_NAME = "localhost";
 
 	public static void main(String[] args) throws IOException {
-		Boolean isValidUsername = false;
+		boolean isValidUsername = false;
 		String username;
 		do {
 			username = ScannerMessage.get("Informe o nome do usuário: ");
