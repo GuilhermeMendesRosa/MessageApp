@@ -40,7 +40,7 @@ public class Client {
 
             if (serverMessage.contains("#close")) {
                 System.out.println(messageOwner + " se desconectou!");
-                return;
+                continue;
             }
 
             System.out.println(serverMessage);
