@@ -36,12 +36,15 @@ public class Client {
 		while ((serverMessage = reader.readLine()) != null) {
 			String messageOwner = serverMessage.split(":")[0];
 
-			if (this.isValidUser(messageOwner) && !serverMessage.contains("#close")) {
-				System.out.println(serverMessage);
-			} else if (this.isValidUser(messageOwner) && serverMessage.contains("#close")) {
-				System.out.println(messageOwner + " se desconectou!");
-			}
-		}
+            if (!this.isValidUser(messageOwner)) return;
+
+            if (serverMessage.contains("#close")) {
+                System.out.println(messageOwner + " se desconectou!");
+                return;
+            }
+
+            System.out.println(serverMessage);
+        }
 	}
 
     public boolean isConnected() {
