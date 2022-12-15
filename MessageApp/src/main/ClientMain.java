@@ -33,7 +33,7 @@ public class ClientMain {
 
 		String message;
 		do {
-            System.out.println(MessageBuilder.defaultColor(""));
+            System.out.print(MessageBuilder.defaultColor(""));
 
             message = ScannerMessage.get(null);
             if (StringValidator.isNotBlank(message)) {
