@@ -6,7 +6,7 @@ import model.*;
 
 public class ClientMain {
 	private static final int DEFAULT_PORT = 1208;
-	private static final String HOST_NAME = "localhost";
+	private static final String DEFAULT_HOST_NAME = "localhost";
 
 	public static void main(String[] args) throws IOException {
         boolean isValidFullAddress = false;
@@ -14,7 +14,7 @@ public class ClientMain {
         Integer port = null;
         do {
             System.out.print(MessageBuilder.defaultColor(""));
-            String serverAddress = ScannerMessage.get(MessageBuilder.defaultColor("Informe o endereço do servidor e a porta, separados por ':', ex: 127.0.0.1:1208. Se nada for informado, será utilizado " + HOST_NAME + "."));
+            String serverAddress = ScannerMessage.get(MessageBuilder.defaultColor("Informe o endereço do servidor e a porta, separados por ':', ex: 127.0.0.1:1208. Se nada for informado, será utilizado " + DEFAULT_HOST_NAME + "."));
 
             if (StringValidator.isNotBlank(serverAddress)) {
                 isValidFullAddress = StringValidator.isValidServerAddress(serverAddress);
@@ -25,7 +25,7 @@ public class ClientMain {
                 host = serverAddress.split(":")[0];
                 port = Integer.parseInt(serverAddress.split(":")[1]);
             } else {
-                host = HOST_NAME;
+                host = DEFAULT_HOST_NAME;
                 port = DEFAULT_PORT;
                 isValidFullAddress = true;
             }
