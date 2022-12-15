@@ -9,6 +9,28 @@ public class ClientMain {
 	private static final String HOST_NAME = "localhost";
 
 	public static void main(String[] args) throws IOException {
+        boolean isValidFullAddress = false;
+        String host = null;
+        Integer port = null;
+        do {
+            System.out.print(MessageBuilder.defaultColor(""));
+            String serverAddress = ScannerMessage.get(MessageBuilder.defaultColor("Informe o endereço do servidor e a porta, separados por ':', ex: 127.0.0.1:1208. Se nada for informado, será utilizado " + HOST_NAME + "."));
+
+            if (StringValidator.isNotBlank(serverAddress)) {
+                isValidFullAddress = StringValidator.isValidServerAddress(serverAddress);
+                if (!isValidFullAddress) {
+                    System.out.println(MessageBuilder.error("Endereço do servidor inválido. "));
+                    continue;
+                }
+                host = serverAddress.split(":")[0];
+                port = Integer.parseInt(serverAddress.split(":")[1]);
+            } else {
+                host = HOST_NAME;
+                port = DEFAULT_PORT;
+                isValidFullAddress = true;
+            }
+        } while (!isValidFullAddress);
+
 		boolean isValidUsername = false;
 		String username;
 		do {
@@ -22,7 +44,7 @@ public class ClientMain {
 
         Client client;
 		try {
-            client = new Client(username, HOST_NAME, DEFAULT_PORT);
+            client = new Client(username, host, port);
         } catch (Exception exception) {
             System.out.println("Conexão recusada. Tente novamente");
             return;
