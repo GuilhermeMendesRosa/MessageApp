@@ -36,11 +36,11 @@ public class Client {
 		while ((serverMessage = reader.readLine()) != null) {
 			String messageOwner = serverMessage.split(":")[0];
 
-            if (!this.isValidUser(messageOwner)) return;
+            if (!this.isValidUser(messageOwner)) continue;
 
             if (serverMessage.contains("#close")) {
                 System.out.println(messageOwner + " se desconectou!");
-                return;
+                continue;
             }
 
             System.out.println(serverMessage);
