@@ -10,15 +10,15 @@ public class Client {
 	PrintStream printStream;
 	Socket socket;
 	String userId;
-	String localhost;
+	String host;
 	Integer port;
 
-	public Client(String userId, String localhost, Integer port) throws IOException {
+	public Client(String userId, String host, Integer port) throws IOException {
 		this.userId = userId;
-		this.localhost = localhost;
+		this.host = host;
 		this.port = port;
 
-		this.socket = new Socket(localhost, port);
+		this.socket = new Socket(host, port);
 
 		this.printStream = new PrintStream(socket.getOutputStream());
 		this.printStream.println(userId);
@@ -36,13 +36,20 @@ public class Client {
 		while ((serverMessage = reader.readLine()) != null) {
 			String messageOwner = serverMessage.split(":")[0];
 
-			if (this.isValidUser(messageOwner) && !serverMessage.contains("#close")) {
-				System.out.println(serverMessage);
-			} else if (this.isValidUser(messageOwner) && serverMessage.contains("#close")) {
-				System.out.println(messageOwner + " se desconectou!");
-			}
-		}
+            if (!this.isValidUser(messageOwner)) return;
+
+            if (serverMessage.contains("#close")) {
+                System.out.println(messageOwner + " se desconectou!");
+                return;
+            }
+
+            System.out.println(serverMessage);
+        }
 	}
+
+    public boolean isConnected() {
+        return socket.isConnected();
+    }
 
 	public void closeConnection() throws IOException {
 		this.printStream.close();

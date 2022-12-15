@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 
 public class ReceiveMessageRunnable implements Runnable {
+
 	Client client;
 
 	public ReceiveMessageRunnable(Client client) {
